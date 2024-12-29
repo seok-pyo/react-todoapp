@@ -1,7 +1,6 @@
 import { useRef } from 'react';
 
 export default function Details({ project, updateTasks }) {
-  console.log(project.tasks);
   const inputVal = useRef();
 
   function handleInput() {

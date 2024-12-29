@@ -21,7 +21,7 @@ function App() {
     tasks: [],
   });
   const [dataList, setDataList] = useState([]);
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedProjectTitle, setSelectedProjectTitle] = useState(null);
 
   const [createState, setCreateState] = useState(false);
 
@@ -43,23 +43,38 @@ function App() {
   }
 
   function handleProjectClick(project) {
-    setSelectedProject(project);
+    setSelectedProjectTitle(project.title);
   }
+
+  // function updateTasks(newTasks) {
+  //   setDataList((prev) =>
+  //     prev.map((project) =>
+  //       selectedProjectTitle === project.title
+  //         ? { ...project, tasks: [...project.tasks, newTasks] }
+  //         : project
+  //     )
+  //   );
+
+  //   setSelectedProject((prev) => ({
+  //     ...prev,
+  //     tasks: [...prev.tasks, newTasks],
+  //   }));
+  // }
 
   function updateTasks(newTasks) {
     setDataList((prev) =>
       prev.map((project) =>
-        selectedProject.title === project.title
+        project.title === selectedProjectTitle
           ? { ...project, tasks: [...project.tasks, newTasks] }
           : project
       )
     );
-
-    setSelectedProject((prev) => ({
-      ...prev,
-      tasks: [...prev.tasks, newTasks],
-    }));
   }
+
+  // onProjectClick을 했을 때 App 컴포넌트가 렌더링 되므르.
+  const selectedProject = dataList.find(
+    (project) => project.title === selectedProjectTitle
+  );
 
   return (
     <>
